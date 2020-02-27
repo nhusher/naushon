@@ -1,6 +1,6 @@
 import {IterableLike} from "./types";
 
-function isIterator (val: any): val is (Iterator<any> | AsyncIterator<any>) {
+export function isIterator (val: any): val is (Iterator<any> | AsyncIterator<any>) {
   try {
     const fn = val[Symbol.asyncIterator] || val[Symbol.iterator]
     return Boolean(fn)

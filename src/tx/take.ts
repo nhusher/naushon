@@ -12,11 +12,9 @@ export function take<T>(n: number) {
     let c = n
     for await (let i of it) {
       c -= 1
-      if (c === 0) close(it)
       yield i
-
-      // If `it` is an array, it cannot be "closed", so we break early here
       if (c === 0) break
     }
+    close(it)
   }
 }
