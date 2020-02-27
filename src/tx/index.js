@@ -91,10 +91,3 @@ const partitionAll = n => async function* partitionAll(it) {
     yield p
   }
 }
-
-
-const inc = n => n + 1
-const even = n => n % 2 === 0
-const add = (a, b) => a + b
-
-const delay = val => new Promise(resolve => setTimeout(() => resolve(val), 100))
