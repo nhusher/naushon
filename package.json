@@ -1,13 +1,18 @@
 {
-  "name": "transducer-playground",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "yam",
+  "version": "0.1.0",
+  "description": "Pipelined transformations using AsyncIterators",
+  "engines": {
+    "node": ">11"
   },
-  "author": "",
-  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha --require ts-node/register src/*.test.ts"
+  },
+  "author": "Nicholas Husher <nhusher@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "fast-csv": "^4.0.2"
   },

@@ -3,6 +3,8 @@
     "target": "es2018",
     "module": "commonjs",
     "rootDir": "./src/",
+    "outDir": "./dist/",
+    "declaration": true,
     "skipLibCheck": true,
     "strict": true,
     "noImplicitAny": true,
@@ -21,7 +23,8 @@
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "lib": ["esnext"]
+    "lib": ["esnext"],
+    "sourceMap": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx", "dist"]
