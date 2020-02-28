@@ -1,6 +1,6 @@
 {
   "name": "naushon",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Pipelined transformations using AsyncIterators",
   "engines": {
     "node": ">11"
@@ -12,6 +12,10 @@
     "test": "mocha --require ts-node/register src/*.test.ts"
   },
   "author": "Nicholas Husher <nhusher@gmail.com>",
+  "repository": {
+    "url": "https://github.com/nhusher/naushon",
+    "type": "git"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/mocha": "^7.0.1",
