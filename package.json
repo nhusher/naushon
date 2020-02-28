@@ -1,6 +1,6 @@
 {
   "name": "naushon",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Pipelined transformations using AsyncIterators",
   "engines": {
     "node": ">11"
@@ -13,14 +13,12 @@
   },
   "author": "Nicholas Husher <nhusher@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "fast-csv": "^4.0.2"
-  },
   "devDependencies": {
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.7.6",
     "mocha": "^7.1.0",
     "ts-node": "^8.6.2",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.2",
+    "fast-csv": "^4.0.2"
   }
 }
