@@ -1,4 +1,7 @@
 // Borrowed from <https://dev.to/ascorbic/creating-a-typed-compose-function-in-typescript-3-351i>
+/**
+ * Pipe transducers together to produce a transformation pipeline.
+ */
 export const pipe = <T extends any[], R>(
     fn1: (...args: T) => R,
     ...fns: Array<(a: R) => R>
