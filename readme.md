@@ -69,7 +69,7 @@ const xform = pipe(
   distinct,        // remove duplicate addresses
   interpose('\n')) // insert newlines between records
 
-// Read each row from the CVS, transforming it with xform, and writing it to
+// Read each row from the CSV, transforming it with xform, and writing it to
 // the output file:
 Readable.from(eduction(xform, addresses())).pipe(createWriteStream('./out.txt'))
 
