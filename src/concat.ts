@@ -6,7 +6,7 @@ import { iterator, isIterator } from "./iterator";
  *
  * @param it
  */
-export async function * cat<T> (it: AsyncIterable<T | T[]>): AsyncIterable<T> {
+export async function * concat<T> (it: AsyncIterable<T | T[]>): AsyncIterable<T> {
   for await (let i of it) {
     if (isIterator(i)) {
       for await (let j of iterator(i as T[])) {

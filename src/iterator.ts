@@ -1,4 +1,4 @@
-import {IterableLike} from "./types";
+import { IterableLike } from "./types";
 
 export function isIterator (val: any): val is (Iterator<any> | AsyncIterator<any>) {
   try {
@@ -17,7 +17,7 @@ export function isIterator (val: any): val is (Iterator<any> | AsyncIterator<any
  *
  * @param it
  */
-export function iterator<T>(it: IterableLike<T>): AsyncIterable<T> {
+export function iterator<T> (it: IterableLike<T>): AsyncIterable<T> {
   if (isIterator(it)) {
     // the thing is already an iterator
     // trust that it conforms to asynciterator even if it's just a regular iterator

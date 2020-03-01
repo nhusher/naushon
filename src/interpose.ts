@@ -4,8 +4,8 @@
  *
  * @param s
  */
-export function interpose <T, U> (s: U) {
-  return async function * interpose(it: AsyncIterable<T>): AsyncIterable<T | U> {
+export function interpose<T, U> (s: U) {
+  return async function * interpose (it: AsyncIterable<T>): AsyncIterable<T | U> {
     let l
 
     for await (let i of it) {

@@ -1,5 +1,5 @@
 import { eduction } from "./eduction";
-import {IterableLike, XForm} from "./types";
+import { IterableLike, XForm } from "./types";
 
 /**
  * Given a transformer and an iterable, return a promise that will resolve to

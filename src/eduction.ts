@@ -1,4 +1,4 @@
-import {IterableLike, XForm} from "./types";
+import { IterableLike, XForm } from "./types";
 import { iterator } from "./iterator";
 
 /**

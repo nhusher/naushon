@@ -1,4 +1,4 @@
-export * from './cat'
+export * from './concat'
 export * from './close'
 export * from './distinct'
 export * from './drop'

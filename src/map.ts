@@ -5,7 +5,7 @@
  *
  * @param fn
  */
-export function map<T, U>(fn: (t: T) => U) {
+export function map<T, U> (fn: (t: T) => U) {
   return async function * map (it: AsyncIterable<T>): AsyncIterable<U> {
     for await (let i of it) {
       yield fn(i)

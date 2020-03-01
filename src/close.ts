@@ -1,12 +1,11 @@
-
 // Streams are destroyable
 interface Destroyable {
-  destroy(): void
+  destroy (): void
 }
 
 // Generators are returnable
 interface Returnable {
-  return(val?: any): void
+  return (val?: any): void
 }
 
 function isDestroyable (s: any): s is Destroyable {

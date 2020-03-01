@@ -7,7 +7,7 @@ import { close } from "./close"
  *
  * @param n
  */
-export function take<T>(n: number) {
+export function take<T> (n: number) {
   return async function * take (it: AsyncIterable<T>): AsyncIterable<T> {
     let c = n
     for await (let i of it) {

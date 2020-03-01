@@ -5,7 +5,7 @@
  *
  * @param fn
  */
-export function filter<T>(fn: (t: T) => boolean) {
+export function filter<T> (fn: (t: T) => boolean) {
   return async function * filter (it: AsyncIterable<T>): AsyncIterable<T> {
     for await (let i of it) {
       if (fn(i)) yield i

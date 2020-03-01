@@ -1,6 +1,6 @@
-import {pipe} from "./pipe";
-import {map} from "./map";
-import {cat} from "./cat";
+import { pipe } from "./pipe";
+import { map } from "./map";
+import { concat } from "./concat";
 
 /**
  * Combination of map and cat transducers. Given a function, apply that
@@ -10,6 +10,6 @@ import {cat} from "./cat";
  *
  * @param fn
  */
-export function mapCat<T, U>(fn: (i: T) => U) {
-  return pipe(map(fn), cat)
+export function mapCat<T, U> (fn: (i: T) => U) {
+  return pipe(map(fn), concat)
 }

@@ -1,6 +1,5 @@
-
 export function partitionBy<T> (fn: (i: T) => any) {
-  return async function* partitionBy(it: AsyncIterable<T>): AsyncIterable<T[]> {
+  return async function * partitionBy (it: AsyncIterable<T>): AsyncIterable<T[]> {
     let p = null
     let k = Symbol()
     for await (let i of it) {

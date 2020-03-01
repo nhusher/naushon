@@ -1,4 +1,4 @@
-import {close} from "./close";
+import { close } from "./close";
 
 /**
  * Returns a stateless transducer that filters the input iterable using the
@@ -7,7 +7,7 @@ import {close} from "./close";
  *
  * @param fn
  */
-export function takeWhile<T>(fn: (t: T) => boolean) {
+export function takeWhile<T> (fn: (t: T) => boolean) {
   return async function * filter (it: AsyncIterable<T>): AsyncIterable<T> {
     for await (let i of it) {
       if (!fn(i)) break
