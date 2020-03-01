@@ -102,9 +102,9 @@ The inspiration for the library is the Clojure [transducers] library, which is e
 
 ## Etymology
 
-![a photo taken on naushon](./naushon.jpg)
-
 Naushon is an island off the coast of Massachusetts. The island is one side of Woods Hole, a place where the tide passes through at great speed when the ocean level is higher on one side than the other. The island links to other small islands with bridges, under which some of this water passes, and where it is held in tidal coves. This seems an appropriate metaphor for the intended use of the `naushon` library: given a massive flow, partition and transform it across many discrete steps.
+
+![a photo taken on naushon](./naushon.jpg)
 
 
 [AsyncIterators]: https://2ality.com/2016/10/asynchronous-iteration.html
