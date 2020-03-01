@@ -108,3 +108,4 @@ Naushon is an island off the coast of Massachusetts. The island is one side of W
 [AsyncIterators]: https://2ality.com/2016/10/asynchronous-iteration.html
 [streams]: https://nodejs.org/dist/latest-v12.x/docs/api/stream.html
 [database cursors]: https://thecodebarbarian.com/cursors-in-mongoose-45.html
+[transducers]: https://clojure.org/reference/transducers
