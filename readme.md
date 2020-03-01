@@ -16,7 +16,7 @@ $ npm install naushon
 // with no upper-bound on their size. There is no way the set of all integers
 // would fit in memory, so this is a good use case for naushon
 function * integers () {
-  let i = 0
+  let i = 0n
   while (true) {
     yield i++
   }
