@@ -1,4 +1,5 @@
 import { close } from "./close"
+import { Step, XForm } from './types'
 
 /**
  * Returns a stateful transducer that will consume `n` items from the input
@@ -7,8 +8,8 @@ import { close } from "./close"
  *
  * @param n
  */
-export function take<T> (n: number) {
-  return async function * take (it: AsyncIterable<T>): AsyncIterable<T> {
+export function take<T> (n: number): XForm<T, T> {
+  return async function * take (it: Step<T>) {
     let c = n
     for await (let i of it) {
       c -= 1

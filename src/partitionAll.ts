@@ -1,5 +1,7 @@
-export function partitionAll<T> (n: number) {
-  return async function * partitionBy (it: AsyncIterable<T>): AsyncIterable<T[]> {
+import { Step, XForm } from './types'
+
+export function partitionAll<T> (n: number): XForm<T, T[]> {
+  return async function * partitionBy (it: Step<T>) {
     let c = n
     let p: T[] = []
     for await (let i of it) {

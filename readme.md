@@ -39,7 +39,7 @@ for await (const block of eduction(xform, integers())) {
 //  "14, 16, 18"
 // then closes
 
-const result = sequence(xform, integers())
+const result = await sequence(xform, integers())
 // ["2, 4, 6", "8, 10, 12", "14, 16, 18"]
 ```
 

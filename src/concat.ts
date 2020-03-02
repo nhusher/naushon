@@ -1,3 +1,4 @@
+import { Step } from './types'
 import { iterator, isIterator } from "./iterator";
 
 /**
@@ -6,7 +7,7 @@ import { iterator, isIterator } from "./iterator";
  *
  * @param it
  */
-export async function * concat<T> (it: AsyncIterable<T | T[]>): AsyncIterable<T> {
+export async function * concat<T> (it: Step<T | T[]>) {
   for await (let i of it) {
     if (isIterator(i)) {
       for await (let j of iterator(i as T[])) {

@@ -20,5 +20,5 @@ import { iterator } from "./iterator";
  * @param it
  */
 export function eduction<T, U> (xform: XForm<T, U>, it: IterableLike<T>) {
-  return xform(iterator(it))
+  return xform(iterator<T>(it))
 }

@@ -1,6 +1,12 @@
 export type IterableLike<T> =
   T[] |
   Iterable<T> |
-  AsyncIterable<T>
+  AsyncIterable<T> |
+  Iterator<T> |
+  AsyncIterator<T> |
+  Generator<T> |
+  AsyncGenerator<T>
 
-export type XForm<T, U> = (it: AsyncIterable<T>) => AsyncIterable<U>
+export type Step<T> = AsyncGenerator<T, void, any>
+
+export type XForm<T, U> = (it: Step<T>) => Step<U>

@@ -5,8 +5,10 @@
  *
  * @param fn
  */
-export function filter<T> (fn: (t: T) => boolean) {
-  return async function * filter (it: AsyncIterable<T>): AsyncIterable<T> {
+import { Step, XForm } from './types'
+
+export function filter<T> (fn: (t: T) => boolean): XForm<T, T> {
+  return async function * filter (it: Step<T>) {
     for await (let i of it) {
       if (fn(i)) yield i
     }

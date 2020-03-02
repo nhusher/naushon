@@ -9,9 +9,9 @@ import { IterableLike, XForm } from "./types";
  * @param xform
  * @param it
  */
-export async function sequence<T, U> (xform: XForm<T, U>, it: IterableLike<T>): Promise<U[]> {
+export async function sequence<T, U> (xform: XForm<T, U>, it: IterableLike<T> | T[]): Promise<U[]> {
   let result = []
-  for await (let i of eduction(xform, it)) {
+  for await (let i of eduction<T, U>(xform, it)) {
     result.push(i)
   }
   return result

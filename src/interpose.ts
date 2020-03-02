@@ -4,8 +4,10 @@
  *
  * @param s
  */
-export function interpose<T, U> (s: U) {
-  return async function * interpose (it: AsyncIterable<T>): AsyncIterable<T | U> {
+import { Step, XForm } from './types'
+
+export function interpose<T, U> (s: U): XForm<T, T | U> {
+  return async function * interpose (it: Step<T>) {
     let l
 
     for await (let i of it) {

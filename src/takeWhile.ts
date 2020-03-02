@@ -1,4 +1,5 @@
 import { close } from "./close";
+import { Step, XForm } from './types'
 
 /**
  * Returns a stateless transducer that filters the input iterable using the
@@ -7,8 +8,8 @@ import { close } from "./close";
  *
  * @param fn
  */
-export function takeWhile<T> (fn: (t: T) => boolean) {
-  return async function * filter (it: AsyncIterable<T>): AsyncIterable<T> {
+export function takeWhile<T> (fn: (t: T) => boolean): XForm<T, T> {
+  return async function * filter (it: Step<T>) {
     for await (let i of it) {
       if (!fn(i)) break
       yield i
