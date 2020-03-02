@@ -7,7 +7,7 @@ import { Step, XForm } from './types'
  * @param fn
  */
 export function dropWhile<T> (fn: (i: T) => boolean): XForm<T, T> {
-  return async function * drop (it: Step<T>) {
+  return async function * dropWhile (it: Step<T>) {
     while (true) {
       let { done, value } = await it.next()
       if (done) break
