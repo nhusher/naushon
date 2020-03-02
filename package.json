@@ -1,6 +1,6 @@
 {
   "name": "naushon",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Pipelined transformations using AsyncIterators",
   "keywords": [
     "async",
