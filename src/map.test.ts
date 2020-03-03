@@ -38,7 +38,7 @@ describe('map', () => {
     }
 
     const input = [1, 3, 2, 1, 0]
-    const output = await sequence<number, string>(map(cardinalify), input)
+    const output = await sequence(map<number, string>(cardinalify), input)
 
     assert.deepEqual(output, ['one', 'three', 'two', 'one', 'zero'])
   })
