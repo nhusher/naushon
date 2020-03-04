@@ -1,12 +1,25 @@
 import { IterableLike } from "./types";
 
-export function isIterator (val: any): val is (Iterator<any> | AsyncIterator<any>) {
+export function isIterator (val: any): val is Iterator<any> {
   try {
-    const fn = val[Symbol.asyncIterator] || val[Symbol.iterator]
+    const fn = val[Symbol.iterator]
     return Boolean(fn)
   } catch (e) {
     return false
   }
+}
+
+export function isAsyncIterator (val: any): val is AsyncIterator<any> {
+  try {
+    const fn = val[Symbol.asyncIterator]
+    return Boolean(fn)
+  } catch (e) {
+    return false
+  }
+}
+
+export function isSomeIterator (val: any): val is (AsyncIterator<any> | Iterator<any>) {
+  return isIterator(val) || isAsyncIterator(val)
 }
 
 /**
@@ -18,17 +31,10 @@ export function isIterator (val: any): val is (Iterator<any> | AsyncIterator<any
  * @param it
  */
 export function iterator<T> (it: IterableLike<T> | T[]): AsyncGenerator<T, undefined, any> {
-  if (Array.isArray(it)) {
-    async function * arrayWrapper () {
-      for (let i = 0; i < (it as T[]).length; i += 1) {
-        yield it[i];
-      }
-    }
-    return arrayWrapper() as unknown as AsyncGenerator<T, undefined, any>
+  if (isAsyncIterator(it)) {
+    return it[Symbol.asyncIterator]()
   } else if (isIterator(it)) {
-    // the thing is already an iterator
-    // trust that it conforms to asynciterator even if it's just a regular iterator
-    return it as unknown as AsyncGenerator<T, undefined, any>
+    return it[Symbol.iterator]()
   } else {
     throw new TypeError(`Iterator, AsyncIterator, or other iterable expected`)
   }
