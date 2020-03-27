@@ -1,5 +1,6 @@
 export * from './concat'
 export * from './close'
+export * from './count'
 export * from './distinct'
 export * from './drop'
 export * from './dropWhile'

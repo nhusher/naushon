@@ -47,7 +47,7 @@ This is fine for truncating an infinitely-large theoretical data set, but what i
 
 ```js
 const { parseFile } = require('fast-csv')
-const { eduction, distinct, filter, interpose, map, pipe, transduce } = require('naushon')
+const { eduction, distinct, filter, interpose, map, pipe, count } = require('naushon')
 
 // A stream of rows from a huge list of addresses in a CSV file:
 function addresses () {
@@ -74,22 +74,9 @@ const xform = pipe(
 Readable.from(eduction(xform, addresses())).pipe(createWriteStream('./out.txt'))
 
 // Or: if we just want to know how many eligible addresses:
-
-// Define a "reducer" that folds each entry into the result one at a time:
-function reducer (acc, item) {
-  // (The reducer is just like what you pass to [].reduce)
-  if (item === '\n') {
-    // we added '\n' but they aren't addresses in a previous step so we would
-    // get nice-looking files, but they aren't addresses so don't count them
-    return acc
-  } 
-
-  return acc + 1
-}
-
 // Consumes the address file a little bit at a time without consuming a ton
 // of memory!
-const count = await transduce(xform, reducer, 0, addresses())
+const ct = await count(xform, addresses())
 ```
 
 ## Rationale
