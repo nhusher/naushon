@@ -10,6 +10,9 @@ export class Buf<T> implements AsyncIterable<T> {
   waitingPuts: ((pushed?: boolean) => T)[]
 
   constructor (size: number) {
+    if (size <= 0) throw new RangeError(`Buffer must have positive size`)
+    if (size !== Math.floor(size)) throw new RangeError(`Buffer must have integer size`)
+
     this.closed = false
     this.size = size
     this.items = []
@@ -44,7 +47,7 @@ export class Buf<T> implements AsyncIterable<T> {
       return Promise.resolve(undefined)
     } else if (this.items.length) {
       return Promise.resolve(this.items.shift())
-    } else if (this.waitingPuts) {
+    } else if (this.waitingPuts.length) {
       return Promise.resolve(this.waitingPuts.shift()!())
     } else {
       return new Promise((resolve, _reject) => {
@@ -53,7 +56,7 @@ export class Buf<T> implements AsyncIterable<T> {
     }
   }
 
-  close (it?: T) {
+  close () {
     this.closed = true
     this.waitingPuts.forEach(put => put(false))
     this.waitingTakes.forEach(take => take(undefined))
@@ -78,6 +81,15 @@ export class Buf<T> implements AsyncIterable<T> {
   }
 }
 
+/**
+ * Given a max size and a "fill" function, return a stateful step function
+ * that buffers incoming data. The step function should consume upstream data
+ * eagerly up to the capacity of the buffer, after which it can do what it
+ * wants.
+ *
+ * @param size
+ * @param fill
+ */
 function buf<T> (size: number, fill: (buf: Buf<T>, it: Step<T>) => void) {
   return async function * buffer (it: Step<T>) {
     const buf = new Buf<T>(size)
@@ -99,6 +111,13 @@ async function haltingFill<T> (buf: Buf<T>, it: Step<T>) {
   buf.close()
 }
 
+/**
+ * Give a size, return a step function that will eagerly consume values from
+ * upstream up to the given size. After that it will halt upstream
+ * consumption until the downstream starts pulling entries from the buffer.
+ *
+ * @param size
+ */
 export function buffer<T> (size: number) {
   return buf<T>(size, haltingFill)
 }
@@ -112,6 +131,13 @@ async function droppingFill<T> (buf: Buf<T>, it: Step<T>) {
   buf.close()
 }
 
+/**
+ * Given a size, return a step function that will eagerly consume values from
+ * the upstream until the given size. If the upstream has new values after
+ * that, it will consume them but will not pass them to subsequent steps.
+ *
+ * @param size
+ */
 export function droppingBuffer<T> (size: number) {
   return buf<T>(size, droppingFill)
 }
@@ -125,6 +151,14 @@ async function windowingFill<T> (buf: Buf<T>, it: Step<T>) {
   buf.close()
 }
 
+/**
+ * Given a size, return a step function that will eagerly consume values from
+ * the upstream until the given size. If the upstream has new values after
+ * that, it will consume them and drop the oldest/stalest record in the
+ * buffer.
+ *
+ * @param size
+ */
 export function windowedBuffer<T> (size: number) {
   return buf<T>(size, windowingFill)
 }
