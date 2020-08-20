@@ -2,8 +2,8 @@ import { IterableLike, XForm } from "./types";
 import { iterator } from "./iterator";
 
 /**
- * For a given transducer and an interable (async or otherwise), perform the
- * transduction on the iteratable. Returns an async iterator of the result of
+ * For a given transducer and an iterable (async or otherwise), perform the
+ * transduction on the iterable. Returns an async iterator of the result of
  * the eduction. Equivalent to `xform(iterator(it))`.
  *
  * @example
