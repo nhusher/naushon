@@ -6,7 +6,7 @@ describe('concat', () => {
   it('should flatten nested arrays', async () => {
     const input: number[][] = [ [ 1, 2 ], [ 3 ], [ 4, 5, 6 ] ]
     const output = await sequence<number[], number>(concat, input)
-    assert.deepEqual(output, [ 1, 2, 3, 4, 5, 6 ])
+    assert.deepStrictEqual(output, [ 1, 2, 3, 4, 5, 6 ])
   })
 
   it('should allow nested items to be iterables', async () => {
@@ -18,7 +18,7 @@ describe('concat', () => {
 
     const input: Generator<number>[] = [range(1, 5), range(6, 10), range(11, 15)]
     const output = await sequence(concat, input)
-    assert.deepEqual(output, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    assert.deepStrictEqual(output, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
   })
 
   it('should allow nested items to be async iterables', async () => {
@@ -34,6 +34,6 @@ describe('concat', () => {
 
     const input: AsyncGenerator<number>[] = [range(1, 5), range(6, 10), range(11, 15)]
     const output = await sequence(concat, input)
-    assert.deepEqual(output, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+    assert.deepStrictEqual(output, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
   })
 })

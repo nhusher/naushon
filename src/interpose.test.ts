@@ -7,18 +7,18 @@ describe('interpose', () => {
     const input = [1, 2, 'red', 'blue', '!']
     const output = await sequence(interpose('🐠'), input)
 
-    assert.deepEqual(output, [1, '🐠', 2, '🐠', 'red', '🐠', 'blue', '🐠', '!'])
+    assert.deepStrictEqual(output, [1, '🐠', 2, '🐠', 'red', '🐠', 'blue', '🐠', '!'])
   })
   it('it should not append the record to the end', async () => {
     const input = [1]
     const output = await sequence(interpose('🐠'), input)
 
-    assert.deepEqual(output, [1])
+    assert.deepStrictEqual(output, [1])
   })
   it('it should not append the record to the end when the input is empty', async () => {
     const input: any[] = []
     const output = await sequence(interpose('🐠'), input)
 
-    assert.deepEqual(output, [])
+    assert.deepStrictEqual(output, [])
   })
 })

@@ -9,14 +9,14 @@ describe('sequence', () => {
   it('should cast an array to an array', async () => {
     const output = await sequence(identity, [ 1, 2, 3 ])
 
-    assert.deepEqual(output, [ 1, 2, 3 ])
+    assert.deepStrictEqual(output, [ 1, 2, 3 ])
   })
 
   it('should cast a simple stream to an array', async () => {
     const s = stream.Readable.from([ 1, 2, 3 ])
     const output = await sequence(identity, s)
 
-    assert.deepEqual(output, [ 1, 2, 3 ])
+    assert.deepStrictEqual(output, [ 1, 2, 3 ])
   })
 
   it('should cast a generator to an array', async () => {
@@ -27,6 +27,6 @@ describe('sequence', () => {
     }
 
     const output = await sequence(identity, gen())
-    assert.deepEqual(output, [ 1, 2, 3 ])
+    assert.deepStrictEqual(output, [ 1, 2, 3 ])
   })
 })

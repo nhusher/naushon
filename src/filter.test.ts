@@ -7,6 +7,6 @@ describe('filter', () => {
     const input = [1, 2, 3, 4, 5, 6, 7, 8]
     const even = (v: number) => v % 2 === 0
     const output = await sequence(filter(even), input)
-    assert.deepEqual(output, input.filter(even))
+    assert.deepStrictEqual(output, input.filter(even))
   })
 })

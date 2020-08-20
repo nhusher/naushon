@@ -12,19 +12,23 @@ describe('eduction', () => {
     for await (let i of it) {
       output.push(i)
     }
-    assert.deepEqual(output, [1, 2, 3, 4, 5])
+    assert.deepStrictEqual(output, [1, 2, 3, 4, 5])
   })
-  it('should do something when it throws', async () => {
-    const it = eduction(map(() => {
-      throw new Error(`An error`)
+  it('should throw a failed promise when the transform throws', async () => {
+    const it = eduction(map(i => {
+      if (i === 3) throw new Error(`An error`)
+      return i
     }), [1, 2, 3])
 
-    try {
-      for await (let i of it) {
-        console.log(i)
+    let loopRuns = 0
+    await assert.rejects(async () => {
+      for await (let _i of it) {
+        loopRuns += 1
       }
-    } catch (e) {
-      console.log(e)
-    }
+    })
+    assert.strictEqual(loopRuns, 2)
+    const next = await it.next()
+    assert(next.done)
+    assert(next.value === undefined)
   })
 })

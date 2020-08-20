@@ -103,6 +103,10 @@ function buf<T> (size: number, fill: (buf: Buf<T>, it: Step<T>) => void) {
   }
 }
 
+//
+// --- Halting buffer -------------------------------------------------------
+//
+
 async function haltingFill<T> (buf: Buf<T>, it: Step<T>) {
   for await (let i of it) {
     if (buf.closed) break
@@ -121,6 +125,10 @@ async function haltingFill<T> (buf: Buf<T>, it: Step<T>) {
 export function buffer<T> (size: number) {
   return buf<T>(size, haltingFill)
 }
+
+//
+// --- Dropping buffer ------------------------------------------------------
+//
 
 async function droppingFill<T> (buf: Buf<T>, it: Step<T>) {
   for await (let i of it) {
@@ -141,6 +149,10 @@ async function droppingFill<T> (buf: Buf<T>, it: Step<T>) {
 export function droppingBuffer<T> (size: number) {
   return buf<T>(size, droppingFill)
 }
+
+//
+// --- Windowing buffer -----------------------------------------------------
+//
 
 async function windowingFill<T> (buf: Buf<T>, it: Step<T>) {
   for await (let i of it) {
