@@ -1,5 +1,11 @@
 import { Step, XForm } from './types'
 
+/**
+ * Returns a stateful transducer that slices the input sequence into pieces
+ * of n size. The last piece may be less than n items.
+ *
+ * @param n
+ */
 export function partitionAll<T> (n: number): XForm<T, T[]> {
   return async function * partitionBy (it: Step<T>) {
     let c = n

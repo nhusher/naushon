@@ -1,4 +1,3 @@
-// import assert from 'assert';
 import stream from 'stream';
 import { map } from "./map";
 import assert from "assert";
