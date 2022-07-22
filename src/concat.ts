@@ -1,13 +1,14 @@
 import { Step } from './types'
 import { iterator, isSomeIterator } from "./iterator";
+import { track } from "./Tracker";
 
 /**
- * Given an iterable that contains arrays, flatten the arrays into additional
+ * Given an iterable that yields iterables, flatten those iterables into additional
  * output records.
  *
  * @param it
  */
-export async function * concat<T> (it: Step<T | T[]>) {
+export const concat = track(async function * concat<T> (it: Step<T | T[]>) {
   for await (let i of it) {
     if (isSomeIterator(i)) {
       for await (let j of iterator(i as T[])) {
@@ -17,4 +18,4 @@ export async function * concat<T> (it: Step<T | T[]>) {
       yield i as T
     }
   }
-}
+})

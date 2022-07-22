@@ -30,7 +30,7 @@ export function isSomeIterator (val: any): val is (AsyncIterator<any> | Iterator
  *
  * @param it
  */
-export function iterator<T> (it: IterableLike<T> | T[]): AsyncGenerator<T, undefined, any> {
+export function iterator<T> (it: IterableLike<T>): AsyncGenerator<T, undefined, any> {
   if (isAsyncIterator(it)) {
     return it[Symbol.asyncIterator]()
   } else if (isIterator(it)) {
@@ -39,3 +39,4 @@ export function iterator<T> (it: IterableLike<T> | T[]): AsyncGenerator<T, undef
     throw new TypeError(`Iterator, AsyncIterator, or other iterable expected`)
   }
 }
+

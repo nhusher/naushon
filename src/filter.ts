@@ -5,12 +5,13 @@
  *
  * @param fn
  */
-import { Step, XForm } from './types'
+import { track, XFormT } from "./Tracker";
+import { Step } from './types'
 
-export function filter<T> (fn: (t: T) => boolean): XForm<T, T> {
-  return async function * filter (it: Step<T>) {
+export function filter<T> (fn: (t: T) => boolean): XFormT<T, T> {
+  return track(async function * filter (it: Step<T>) {
     for await (let i of it) {
       if (fn(i)) yield i
     }
-  }
+  })
 }
